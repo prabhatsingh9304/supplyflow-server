@@ -55,6 +55,25 @@ backend/
 | Invoices | generate, view, download PDF | Supplier |
 | Analytics | dashboard, revenue, top products/retailers | Supplier only |
 
+## Setup Docker
+```sudo apt update
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+
+sudo mkdir -p /usr/local/lib/docker/cli-plugins
+
+sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+-o /usr/local/lib/docker/cli-plugins/docker-compose
+
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+```
+## Add User
+```
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
 ## Multi-Tenancy
 
 Each supplier is an organization. All data is scoped by `organization_id` and tenant isolation is enforced at every query.
